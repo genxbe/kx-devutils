@@ -1,13 +1,18 @@
 <?php
 
-namespace X\Commands\Commands;
+namespace X\Devutils\KirbyCommands;
 
 use Kirby\CLI\CLI;
+use Devutils\Command;
 
 use function Laravel\Prompts\table;
 
-class Roots extends Command
+class RootsCommand extends Command
 {
+	public static string $commandName = 'x:kirby:roots';
+	public static string $description = 'Pretty list of all configured roots.';
+	public static array $commandArgs = [];
+
 	public function __construct(CLI $cli)
 	{
 		parent::__construct($cli);

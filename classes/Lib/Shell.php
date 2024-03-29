@@ -1,6 +1,6 @@
 <?php
 
-namespace X\Commands\Lib;
+namespace X\Devutils\Lib;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;

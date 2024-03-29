@@ -1,10 +1,10 @@
 <?php
 
-namespace X\Commands\Commands;
+namespace X\Devutils\Commands;
 
 use Kirby\CLI\CLI;
 use Kirby\Filesystem\F;
-use X\Commands\Lib\Shell;
+use X\Devutils\Lib\Shell;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\alert;

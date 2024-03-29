@@ -1,10 +1,10 @@
 <?php
 
-namespace X\Commands\Commands;
+namespace X\Devutils\Commands;
 
 use Kirby\CLI\CLI;
 use Kirby\Toolkit\Str;
-use X\Commands\Lib\Toolkit;
+use X\Devutils\Lib\Toolkit;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\table;
