@@ -56,7 +56,7 @@ class Routes extends Command
 		$ref = new ReflectionFunction($closure);
 		$filename = Str::replace(
 			$ref->getFileName(),
-			$this->kirby->root('root'),
+			$this->kirby->root(),
 			'',
 		);
 

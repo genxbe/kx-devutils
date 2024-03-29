@@ -41,7 +41,7 @@ class Options extends Command
 		$selectedPlugin = suggest(
 			label: 'Do you want options for a specific plugin? (Leavy empty for all)',
 			options: $safePluginNames,
-			placeholder: 'E.g. ray or bnomei/...',
+			placeholder: 'E.g. ray or bnomei/... (or just do ⬇️  to select)',
 		);
 
 		return $this->getOptions($selectedPlugin);
