@@ -5,12 +5,12 @@ namespace X\Devutils\Commands\KirbyCommands;
 use Kirby\CLI\CLI;
 use Kirby\Toolkit\Str;
 use X\Devutils\Lib\Toolkit;
+use X\Devutils\Lib\Plugins;
 use X\Devutils\Commands\Command;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\table;
 use function Laravel\Prompts\error;
-use function Laravel\Prompts\suggest;
 
 class Options extends Command
 {
@@ -32,30 +32,9 @@ class Options extends Command
 			return $this->getOptions();
 		}
 
-		$this->selectPlugin();
-	}
-
-	private function selectPlugin()
-	{
-		$plugins = $this->kirby->plugins();
-		$fullPluginNames = array_keys(array_map(function($plugin) {
-			return $plugin->name();
-		}, $plugins));
-
-		foreach($fullPluginNames as $plugin) {
-			$pluginParts = explode('/', $plugin);
-			$pluginNames[] = $pluginParts[1]." ({$plugin})";
-		}
-
-		$safePluginNames = array_merge($fullPluginNames, $pluginNames);
-
-		$selectedPlugin = suggest(
-			label: 'Do you want options for a specific plugin? (Leavy empty for all)',
-			options: $safePluginNames,
-			placeholder: 'E.g. ray or bnomei/... (or just use the down arrow to select)',
-		);
-
-		return $this->getOptions($selectedPlugin);
+		$plugins = new Plugins($this->kirby);
+		$plugin = $plugins->selectPlugin();
+		$this->getOptions($plugin);
 	}
 
 	private function getOptions(string $plugin = null)

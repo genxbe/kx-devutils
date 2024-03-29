@@ -107,7 +107,7 @@ The first composer install should obviously be done manually. (otherwise this pa
 ## Installation
 
 This plugin can only be installed with composer!
-If you are not using the scheduler you can install the plugin as a dev dependency.
+If you are not using the maintenance mode or scheduler you can install the plugin as a dev dependency.
 
 ### As a dev dependency
 

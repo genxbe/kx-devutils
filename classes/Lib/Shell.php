@@ -2,6 +2,8 @@
 
 namespace X\Devutils\Lib;
 
+use Kirby\Toolkit\Str;
+
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
@@ -12,8 +14,7 @@ class Shell
 	public static function run(string $cmd): bool
     {
 		$workingDirectory = getcwd();
-		$command = explode(' ', $cmd);
-		$command = array_filter($command);
+		$command = Str::split($cmd, ' ');
 
         $process = new Process($command, $workingDirectory);
         $process->setTimeout(3600);
