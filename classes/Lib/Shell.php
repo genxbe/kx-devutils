@@ -11,9 +11,9 @@ class Shell
 {
 	public static function run(string $cmd): bool
     {
+		$workingDirectory = getcwd();
 		$command = explode(' ', $cmd);
-
-        $workingDirectory = getcwd();
+		$command = array_filter($command);
 
         $process = new Process($command, $workingDirectory);
         $process->setTimeout(3600);

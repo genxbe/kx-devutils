@@ -29,6 +29,8 @@ Some handy Kirby commands to help during Kirby development.
 
 This command will install the required dependencies for the project. It will detect if you are using npm, yarn or composer and run the appropriate command(s).
 
+The first composer install should obviously be done manually. (otherwise this package won't be available yet 😅)
+
 #### Commandline arguments
 
 **--nophp**: Do not run the composer command (if a `composer.json` is found)
