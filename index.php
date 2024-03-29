@@ -1,7 +1,11 @@
 <?php
 
 $options = [
-    //
+    'x-install' => [
+		'createEnv' => true,
+		'useNvm' => false,
+		'composerPrefix' => '',
+	]
 ];
 
 ray()->enable();

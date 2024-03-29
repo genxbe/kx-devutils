@@ -15,11 +15,17 @@ use function Laravel\Prompts\progress;
 
 class Install extends Command
 {
+	private array $options;
+
 	public function __construct(CLI $cli)
 	{
 		parent::__construct($cli);
 
-		$this->checkEnv();
+		$this->options = option('genxbe.kx-devutils.x-install');
+
+		if($this->options['createEnv']) {
+			$this->checkEnv();
+		}
 
 		if(empty($cli->arg('--nophp'))) {
 			$this->composerInstall();
@@ -68,11 +74,17 @@ class Install extends Command
 			return;
 		}
 
+		if(!empty($this->options['composerPrefix'])) {
+			$composerPrefix = ' '.$this->options['composerPrefix'];
+		} else {
+			$composerPrefix = '';
+		}
+
 		$success = progress(
 			label: 'Running composer install...',
 			steps: 1,
-			callback: function() {
-				Shell::run('composer install');
+			callback: function() use($composerPrefix) {
+				Shell::run("{$composerPrefix} composer install");
 			},
 		);
 
