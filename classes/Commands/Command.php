@@ -1,16 +1,16 @@
 <?php
 
-namespace X\Devutils;
+namespace X\Devutils\Commands;
 
 use Kirby\Cms\App;
 use Kirby\CLI\CLI;
 
-private static string $commandName = 'x:command';
-private static string $commandDescription = 'This is a command';
-private static array $commandArgs = [];
-
 class Command
 {
+	private static string $commandName = 'x:command';
+	private static string $commandDescription = 'This is a command';
+	private static array $commandArgs = [];
+
 	protected CLI $cli;
 	protected App $kirby;
 

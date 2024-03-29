@@ -1,12 +1,13 @@
 <?php
 
-use X\Devutils;
+use X\Devutils\Commands;
 
 $options = [
+	'maintenance' => true,
     'x-install' => [
 		'createEnv' => false,
 		'composerPrefix' => '',
-	]
+	],
 ];
 
 ray()->enable();
@@ -16,12 +17,17 @@ Kirby::plugin('genxbe/kx-devutils', [
 	'snippets' => [
 		'x/maintenance' => __DIR__ . '/snippets/maintenance.php',
 	],
-	'commands' => [
-		KirbyCommands\RootsCommand::render(),
-		// 'x:install' => require __DIR__.'/commands/install.php',
-		// 'x:options' => require __DIR__.'/commands/options.php',
-		// 'x:routes' => require __DIR__.'/commands/routes.php',
-		// 'x:roots' => require __DIR__.'/commands/roots.php',
-		// 'x:users' => require __DIR__.'/commands/users.php',
-	]
+	'commands' => A::merge(
+		/** Kirby Commands **/
+		Commands\KirbyCommands\Up::render(),
+		Commands\KirbyCommands\Down::render(),
+		Commands\KirbyCommands\Roots::render(),
+		Commands\KirbyCommands\Users::render(),
+		Commands\KirbyCommands\Routes::render(),
+		Commands\KirbyCommands\Options::render(),
+		Commands\KirbyCommands\Install::render(),
+	),
+	'hooks' => [
+        'route:after' => fn() => X\Devutils\Lib\Toolkit::checkForMaintenance(),
+    ],
 ]);

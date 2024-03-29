@@ -1,14 +1,19 @@
 <?php
 
-namespace X\Devutils\Commands;
+namespace X\Devutils\Commands\KirbyCommands;
 
 use Kirby\CLI\CLI;
+use X\Devutils\Commands\Command;
 
 use function Laravel\Prompts\table;
 use function Laravel\Prompts\error;
 
 class Users extends Command
 {
+	public static string $commandName = 'x:users';
+	public static string $description = 'Show all users of the kirby site';
+	public static array $commandArgs = [];
+
 	public function __construct(CLI $cli)
 	{
 		parent::__construct($cli);

@@ -1,10 +1,11 @@
 <?php
 
-namespace X\Devutils\Commands;
+namespace X\Devutils\Commands\KirbyCommands;
 
 use Kirby\CLI\CLI;
 use Kirby\Filesystem\F;
 use X\Devutils\Lib\Shell;
+use X\Devutils\Commands\Command;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\alert;
@@ -15,6 +16,21 @@ use function Laravel\Prompts\progress;
 
 class Install extends Command
 {
+	public static string $commandName = 'x:install';
+	public static string $description = 'Install the project, do some default stuff';
+	public static array $commandArgs = [
+		'--nojs' => [
+			'longPrefix'  => 'nojs',
+			'description' => 'Don\'t run npm/yarn',
+			'noValue'     => true,
+		],
+		'--nophp' => [
+			'longPrefix'  => 'nophp',
+			'description' => 'Don\'t run composer',
+			'noValue'     => true,
+		],
+	];
+
 	private array $options;
 
 	public function __construct(CLI $cli)

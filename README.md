@@ -16,12 +16,15 @@ Some handy Kirby commands to help during Kirby development.
 
 ## Available commands
 
-| Command     | Description                                               |
-| ----------- | --------------------------------------------------------- |
-| `x:install` | Install npm / yarn / composer (depending on what is used) |
-| `x:options` | Show all or specific plugin options                       |
-| `x:routes`  | List all routes                                           |
-| `x:roots`   | Show all roots of the kirby instance                      |
+| Command     | Description                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| `x:up`      | Removes the generic maintenance mode message.                           |
+| `x:down`    | Sets a generic maintenance mode message with an optional email address. |
+| `x:roots`   | Show all roots of the kirby instance                                    |
+| `x:users`   | Show all users of the kirby site                                    |
+| `x:routes`  | List all routes                                                         |
+| `x:options` | Show all or specific plugin options                                     |
+| `x:install` | Install npm / yarn / composer (depending on what is used)               |
 
 ## Commands
 

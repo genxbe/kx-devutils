@@ -1,9 +1,10 @@
 <?php
 
-namespace X\Devutils\Commands;
+namespace X\Devutils\Commands\KirbyCommands;
 
 use Closure;
 use ReflectionFunction;
+use X\Devutils\Commands\Command;
 
 use Kirby\CLI\CLI;
 use Kirby\Toolkit\Str;
@@ -12,6 +13,10 @@ use function Laravel\Prompts\table;
 
 class Routes extends Command
 {
+	public static string $commandName = 'x:routes';
+	public static string $description = 'Show all routes';
+	public static array $commandArgs = [];
+
 	public function __construct(CLI $cli)
 	{
 		parent::__construct($cli);

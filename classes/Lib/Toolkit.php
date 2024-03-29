@@ -2,6 +2,9 @@
 
 namespace X\Devutils\Lib;
 
+use Kirby\Toolkit\Str;
+use Kirby\Cms\Url;
+use Kirby\Filesystem\F;
 class Toolkit
 {
 	public static function flattenArray($array, $prefix = '')
@@ -36,5 +39,21 @@ class Toolkit
 			'' => '-- empty string --',
 			default => $value,
 		};
+	}
+
+	public static function checkForMaintenance()
+	{
+		if (option('genxbe.kx-devutils.maintenance') === true) {
+			$kirby = kirby();
+			$rootFolder = $kirby->root();
+			$panelUrl = option('panel.slug') ?? 'panel';
+
+			if(!$kirby->user() && Str::position(Url::current(),$panelUrl) === false && F::exists($rootFolder.'/.maintenance'))
+			{
+				$email = file_get_contents($rootFolder.'/.maintenance');
+				snippet('x/maintenance', compact('email'));
+				die();
+			}
+		}
 	}
 }

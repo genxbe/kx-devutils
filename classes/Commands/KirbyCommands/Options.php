@@ -1,10 +1,11 @@
 <?php
 
-namespace X\Devutils\Commands;
+namespace X\Devutils\Commands\KirbyCommands;
 
 use Kirby\CLI\CLI;
 use Kirby\Toolkit\Str;
 use X\Devutils\Lib\Toolkit;
+use X\Devutils\Commands\Command;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\table;
@@ -13,6 +14,16 @@ use function Laravel\Prompts\suggest;
 
 class Options extends Command
 {
+	public static string $commandName = 'x:options';
+	public static string $description = 'Show all options or select a plugin to show its options';
+	public static array $commandArgs = [
+		'--all' => [
+			'longPrefix'  => 'all',
+			'description' => 'Show all kirby and plugin options',
+			'noValue'     => true,
+		],
+	];
+
 	public function __construct(CLI $cli)
 	{
 		parent::__construct($cli);
@@ -41,7 +52,7 @@ class Options extends Command
 		$selectedPlugin = suggest(
 			label: 'Do you want options for a specific plugin? (Leavy empty for all)',
 			options: $safePluginNames,
-			placeholder: 'E.g. ray or bnomei/... (or just do ⬇️  to select)',
+			placeholder: 'E.g. ray or bnomei/... (or just use the down arrow to select)',
 		);
 
 		return $this->getOptions($selectedPlugin);
