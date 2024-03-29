@@ -1,7 +1,7 @@
 {
   "name": "genxbe/kx-devutils",
   "description": "Some handy Kirby commands to help Kirby development",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": [
     "genxbe",
     "kirby",
