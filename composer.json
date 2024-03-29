@@ -1,0 +1,42 @@
+{
+  "name": "genxbe/kx-devutils",
+  "description": "Some handy Kirby commands to help Kirby development",
+  "version": "0.0.1",
+  "keywords": [
+    "genxbe",
+    "kirby",
+    "plugin",
+    "getkirby",
+    "commands",
+    "cli"
+  ],
+  "type": "kirby-plugin",
+  "license": "MIT",
+  "homepage": "https://github.com/genxbe/kx-devutils",
+  "authors": [
+    {
+      "name": "Sam Serrien",
+      "email": "source@genx.be",
+      "homepage": "https://genx.be"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "getkirby/composer-installer": "^1.2",
+    "laravel/prompts": "^0.1.16"
+  },
+  "require-dev": {
+    "symfony/process": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "X\\Commands\\": "classes/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
+  }
+}

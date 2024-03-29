@@ -1,0 +1,23 @@
+# System files
+# ------------
+
+Icon
+.DS_Store
+
+# Editors
+# (sensitive workspace files)
+# ---------------------------
+*.sublime-workspace
+/.vscode
+/.idea
+.php-cs-fixer.cache
+
+## Composer
+# ---------------
+/vendor
+
+## Frontend
+# ---------------
+.sass-cache
+node_modules
+npm-debug.log
