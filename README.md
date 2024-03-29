@@ -41,13 +41,11 @@ The first composer install should obviously be done manually. (otherwise this pa
 ```
 'genxbe.kx-devutils.x-install' => [
     'createEnv' => false,
-    'useNvm' => false,
-    'composerPrefix' => '',
+    'composerRunPrefix' => '',
 ];
 ```
 
 **createEnv**: Create a `.env` file or rename an .env.example file if it does not exist
-**useNvm**: Use NVM to install the correct node version
 **composerPrefix**: Prefix for the composer command with herd/valet or a php executable
 
 ## Installation

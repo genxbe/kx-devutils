@@ -3,7 +3,6 @@
 $options = [
     'x-install' => [
 		'createEnv' => false,
-		'useNvm' => false,
 		'composerPrefix' => '',
 	]
 ];

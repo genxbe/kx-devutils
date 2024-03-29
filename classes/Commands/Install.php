@@ -74,17 +74,17 @@ class Install extends Command
 			return;
 		}
 
-		if(!empty($this->options['composerPrefix'])) {
-			$composerPrefix = ' '.$this->options['composerPrefix'];
+		if(!empty($this->options['composerRunPrefix'])) {
+			$composerRunPrefix = ' '.$this->options['composerRunPrefix'];
 		} else {
-			$composerPrefix = '';
+			$composerRunPrefix = '';
 		}
 
 		$success = progress(
 			label: 'Running composer install...',
 			steps: 1,
-			callback: function() use($composerPrefix) {
-				Shell::run("{$composerPrefix} composer install");
+			callback: function() use($composerRunPrefix) {
+				Shell::run("{$composerRunPrefix} composer install");
 			},
 		);
 
