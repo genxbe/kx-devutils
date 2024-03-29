@@ -5,9 +5,17 @@ Some handy Kirby commands to help during Kirby development.
 - [Kirby devutils plugin](#kirby-devutils-plugin)
   - [Available commands](#available-commands)
   - [Commands](#commands)
-    - [`x:install`](#xinstall)
+    - [`x:up`](#xup)
+    - [`x:down`](#xdown)
       - [Commandline arguments](#commandline-arguments)
       - [Options](#options)
+    - [`x:roots`](#xroots)
+    - [`x:users`](#xusers)
+    - [`x:routes`](#xroutes)
+    - [`x:options`](#xoptions)
+    - [`x:install`](#xinstall)
+      - [Commandline arguments](#commandline-arguments-1)
+      - [Options](#options-1)
   - [Installation](#installation)
     - [As a dev dependency](#as-a-dev-dependency)
     - [As a normal dependency](#as-a-normal-dependency)
@@ -27,6 +35,51 @@ Some handy Kirby commands to help during Kirby development.
 | `x:install` | Install npm / yarn / composer (depending on what is used)               |
 
 ## Commands
+
+### `x:up`
+
+This command will remove the generic maintenance mode message.
+
+### `x:down`
+
+This command will set a generic maintenance mode message with an optional email address. You will be prompted with a confirmation message before the site is brought down.
+You can also manually trigger the maintenance mode by creating a `.maintenance` file in the root of your Kirby installation. The contents of this file will be used as the email address.
+
+Users who are logged in will still be able to visit the site.
+
+You can always override the default snippet by creating a `site/snippets/x/maintenance.php` file.
+
+#### Commandline arguments
+
+**email**: The email address to show in the maintenance message
+
+Example usage: `kirby x:down support@getkirby.com`
+
+#### Options
+
+```php
+'genxbe.kx-devutils' => [
+	'maintenance' => true,
+];
+```
+
+**maintenance**: Enable or disable the __possibility__ for the maintenance mode.
+
+### `x:roots`
+
+This command will show all roots of the kirby instance.
+
+### `x:users`
+
+This command will show all users of the kirby site.
+
+### `x:routes`
+
+This command will list all routes.
+
+### `x:options`
+
+This command will show all or specific plugin options.
 
 ### `x:install`
 
