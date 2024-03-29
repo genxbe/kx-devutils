@@ -8,19 +8,18 @@ MIT
 
 ## Installation
 
-### Download
+This plugin can only be installed with composer!
+If you are not using the scheduler you can install the plugin as a dev dependency.
 
-Download and copy this repository to `/site/plugins/kx-devutils`.
+### As a dev dependency
 
-### Git submodule
-
+```bash
+composer require genxbe/kx-devutils --dev
 ```
-git submodule add https://github.com/genxbe/kx-devutils.git site/plugins/kx-devutils
-```
 
-### Composer
+### As a normal dependency
 
-```
+```bash
 composer require genxbe/kx-devutils
 ```
 
