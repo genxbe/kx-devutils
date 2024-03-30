@@ -10,12 +10,22 @@ $options = [
 	],
 	'plugins' => [
 		'packages' => [
-
+			// 'seo' => [
+			// 	'bnomei/kirby3-feed',
+			// 	'tobimori/kirby-seo',
+			// ],
+			// 'favourites' => [
+			// 	'genxbe/kirby3-ray',
+			// 	'bnomei/autoloader-for-kirby',
+			// 	'bnomei/kirby3-feed',
+			// ],
 		]
 	]
 ];
 
-ray()->enable();
+if(option('debug') && \Kirby\Filesystem\F::exists(kirby()->root().'/vendor/spatie/ray/composer.json')) {
+	ray()->enable();
+}
 
 Kirby::plugin('genxbe/kx-devutils', [
 	'options' => $options,
