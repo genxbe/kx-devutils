@@ -12,7 +12,7 @@ use function Laravel\Prompts\info;
 use function Laravel\Prompts\table;
 use function Laravel\Prompts\error;
 
-class Options extends Command
+class OptionsCommand extends Command
 {
 	public static string $commandName = 'x:options';
 	public static string $description = 'Show all options or select a plugin to show its options';
@@ -42,11 +42,6 @@ class Options extends Command
 		$allOptions = $this->kirby->options();
 
 		if(!empty($plugin)) {
-			if(Str::contains($plugin, '(')) {
-				$plugin = Str::between($plugin, '(', ')');
-			}
-
-
 			if(!empty($allOptions[Str::replace($plugin, '/', '.')])) {
 				$pluginOptions = $allOptions[Str::replace($plugin, '/', '.')];
 				return $this->printOptions($plugin, $pluginOptions);

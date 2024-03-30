@@ -7,7 +7,7 @@ use X\Devutils\Commands\Command;
 
 use function Laravel\Prompts\table;
 
-class Roots extends Command
+class RootsCommand extends Command
 {
 	public static string $commandName = 'x:roots';
 	public static string $description = 'Pretty list of all configured roots';

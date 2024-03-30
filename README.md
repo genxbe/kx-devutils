@@ -95,7 +95,7 @@ The first composer install should obviously be done manually. (otherwise this pa
 #### Options
 
 ```
-'genxbe.kx-devutils.x-install' => [
+'genxbe.kx-devutils.install' => [
     'createEnv' => false,
     'composerRunPrefix' => '',
 ];

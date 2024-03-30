@@ -11,7 +11,7 @@ use Kirby\Toolkit\Str;
 
 use function Laravel\Prompts\table;
 
-class Routes extends Command
+class RoutesCommand extends Command
 {
 	public static string $commandName = 'x:routes';
 	public static string $description = 'Show all routes';

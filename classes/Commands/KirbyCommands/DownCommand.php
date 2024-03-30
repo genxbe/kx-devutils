@@ -13,7 +13,7 @@ use function Laravel\Prompts\error;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\warning;
 
-class Down extends Command
+class DownCommand extends Command
 {
 	public static string $commandName = 'x:down';
 	public static string $commandDescription = 'Sets a generic maintenance mode message with an optional email address.';
@@ -36,8 +36,7 @@ class Down extends Command
 
 		if(!$confirmed)
 		{
-			error('❌ Maintenance mode not enabled.');
-			die();
+			return error('❌ Maintenance mode not enabled.');
 		}
 
 		$email = $cli->arg('email');

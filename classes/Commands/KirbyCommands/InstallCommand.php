@@ -14,7 +14,7 @@ use function Laravel\Prompts\warning;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\progress;
 
-class Install extends Command
+class InstallCommand extends Command
 {
 	public static string $commandName = 'x:install';
 	public static string $description = 'Install the project, do some default stuff';
@@ -37,7 +37,7 @@ class Install extends Command
 	{
 		parent::__construct($cli);
 
-		$this->options = option('genxbe.kx-devutils.x-install');
+		$this->options = option('genxbe.kx-devutils.install');
 
 		if($this->options['createEnv']) {
 			$this->checkEnv();

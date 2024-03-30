@@ -4,7 +4,7 @@ use X\Devutils\Commands;
 
 $options = [
 	'maintenance' => true,
-    'x-install' => [
+    'install' => [
 		'createEnv' => false,
 		'composerPrefix' => '',
 	],
@@ -19,13 +19,17 @@ Kirby::plugin('genxbe/kx-devutils', [
 	],
 	'commands' => A::merge(
 		/** Kirby Commands **/
-		Commands\KirbyCommands\Up::render(),
-		Commands\KirbyCommands\Down::render(),
-		Commands\KirbyCommands\Roots::render(),
-		Commands\KirbyCommands\Users::render(),
-		Commands\KirbyCommands\Routes::render(),
-		Commands\KirbyCommands\Options::render(),
-		Commands\KirbyCommands\Install::render(),
+		Commands\KirbyCommands\UpCommand::render(),
+		Commands\KirbyCommands\DownCommand::render(),
+		Commands\KirbyCommands\RootsCommand::render(),
+		Commands\KirbyCommands\UsersCommand::render(),
+		Commands\KirbyCommands\RoutesCommand::render(),
+		Commands\KirbyCommands\OptionsCommand::render(),
+		Commands\KirbyCommands\InstallCommand::render(),
+
+		/** Plugin Commands **/
+		Commands\PluginCommands\ListCommand::render(),
+		Commands\PluginCommands\RemoveCommand::render(),
 	),
 	'hooks' => [
         'route:after' => fn() => X\Devutils\Lib\Toolkit::checkForMaintenance(),

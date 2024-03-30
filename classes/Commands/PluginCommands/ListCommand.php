@@ -1,13 +1,15 @@
 <?php
 
-namespace X\Commands\PluginCommands;
+namespace X\Devutils\Commands\PluginCommands;
 
 use X\Devutils\Lib\Plugins;
+use X\Devutils\Commands\Command;
 
 use Kirby\CLI\CLI;
 use Kirby\Toolkit\Str;
 
-use function Termwind\{render};
+use function Laravel\Prompts\error;
+use function Laravel\Prompts\table;
 
 class ListCommand extends Command
 {
@@ -17,32 +19,31 @@ class ListCommand extends Command
 
 	public function __construct(CLI $cli)
 	{
-		$plugins = Plugins::get();
+		parent::__construct($cli);
 
-		$pluginsHtml = '';
+        foreach($this->kirby->plugins() as $plugin)
+        {
+			$p = $this->kirby->plugin($plugin->name());
 
-		foreach ($plugins as $plugin) {
-			$p = kirby()->plugin($plugin);
-			$pluginsHtml .= '
-				<tr>
-				<td>'. $plugin .'</td>
-				<td>'. $p->version() .'</td>
-				<td>'. Str::short($p->description(), 100) .'</td>
-				</tr>
-			';
-		}
+			$arr['name'] = $plugin->name();
+			$arr['version'] = $p->version();
+			$arr['descr'] = Str::short($p->description(), 100);
 
-		render(<<<HTML
-			<table>
-				<thead>
-					<tr>
-						<th>Plugin</th>
-						<th>Version</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				{$pluginsHtml}
-			</table>
-		HTML);
+			$table[] = $arr;
+        }
+
+        if(empty($table))
+        {
+            return error('❌ There are no plugins installed.');
+        }
+
+		usort($table, function($a, $b) {
+			return strcmp($a['name'], $b['name']);
+		});
+
+        table(
+            headers: ['Name', 'Version', 'Description'],
+            rows: $table,
+        );
 	}
 }

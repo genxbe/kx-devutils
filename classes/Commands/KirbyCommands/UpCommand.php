@@ -10,7 +10,7 @@ use function Laravel\Prompts\info;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\confirm;
 
-class Up extends Command
+class UpCommand extends Command
 {
 	public static string $commandName = 'x:up';
 	public static string $commandDescription = 'Removes the generic maintenance mode message.';

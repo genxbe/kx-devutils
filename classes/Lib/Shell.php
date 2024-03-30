@@ -22,6 +22,7 @@ class Shell
         try {
             $process->mustRun();
         } catch (ProcessFailedException $exception) {
+			ray($exception);
 			return false;
         }
 

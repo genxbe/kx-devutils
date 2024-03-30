@@ -8,7 +8,7 @@ use X\Devutils\Commands\Command;
 use function Laravel\Prompts\table;
 use function Laravel\Prompts\error;
 
-class Users extends Command
+class UsersCommand extends Command
 {
 	public static string $commandName = 'x:users';
 	public static string $description = 'Show all users of the kirby site';

@@ -36,6 +36,12 @@ class Plugins
 			placeholder: 'E.g. ray or bnomei/... (or just use the down arrow to select)',
 		);
 
-		return $selectedPlugin;
+		if(!empty($selectedPlugin)) {
+			if(Str::contains($selectedPlugin, '(')) {
+				$selectedPlugin = Str::between($selectedPlugin, '(', ')');
+			}
+		}
+
+		return $selectedPlugin ?? null;
 	}
 }
