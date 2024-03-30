@@ -2,8 +2,8 @@
 
 namespace X\Devutils\Lib;
 
-use Kirby\Toolkit\Str;
 use Kirby\Cms\Url;
+use Kirby\Toolkit\Str;
 use Kirby\Filesystem\F;
 class Toolkit
 {
@@ -55,6 +55,11 @@ class Toolkit
 				die();
 			}
 		}
+	}
+
+	public static function useRay(): bool
+	{
+		return option('debug') && \Kirby\Filesystem\F::exists(kirby()->root().'/vendor/spatie/ray/composer.json');
 	}
 
 	public static function renderCommands(): void

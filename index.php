@@ -36,13 +36,28 @@ $options = [
 		Commands\PluginCommands\ListCommand::class,
 		Commands\PluginCommands\RemoveCommand::class,
 		Commands\PluginCommands\InstallCommand::class,
+
+		/** Future commands **/
+		// Commands\Database\LoadSnapshotCommand::class,
+		// Commands\Database\ListSnapshotsCommand::class,
+		// Commands\Database\CreateSnapshotCommand::class,
+		// Commands\Database\DeleteSnapshotCommand::class,
+		// Commands\Database\CleanSnapshotsCommand::class,
+
+		// Commands\Backup\ManualBackupCommand::class, // AWS or SFTP
+		// Commands\Backup\RotateBackupCommand::class, // AWS or SFTP
+
+		// Commands\Scheduler\RunCommand::class,
+		// Commands\Scheduler\ListCommand::class,
+		// Commands\Scheduler\AddCronCommand::class,
+		// Commands\Scheduler\TestCronCommand::class,
 	],
 	'disabledCommands' => [
 		//
 	],
 ];
 
-if(option('debug') && \Kirby\Filesystem\F::exists(kirby()->root().'/vendor/spatie/ray/composer.json')) {
+if(Toolkit::useRay()) {
 	ray()->enable();
 }
 
