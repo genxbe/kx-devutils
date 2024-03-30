@@ -33,6 +33,9 @@ class Shell
 			];
         }
 
-		return true;
+		return [
+			'success' => true,
+			'msg' => '',
+		];
     }
 }

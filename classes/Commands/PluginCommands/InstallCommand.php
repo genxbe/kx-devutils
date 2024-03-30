@@ -22,13 +22,46 @@ class InstallCommand extends Command
 {
 	public static string $commandName = 'x:plugins:install';
 	public static string $commandDescription = 'Install a plugin via composer.';
-	public static array $commandArgs = [];
+	public static array $commandArgs = [
+		'package' => [
+			'description' => 'The pre-configured plugin package you would like to install',
+			'required' => false
+		],
+	];
+
+	private string|null $composerRunPrefix;
 
 	public function __construct(CLI $cli)
 	{
 		parent::__construct($cli);
-		$composerRunPrefix = option('genxbe.devutils.install.composerRunPrefix');
+		$this->composerRunPrefix = option('genxbe.devutils.install.composerRunPrefix');
 
+		$package = $cli->arg('package');
+
+		if(empty($package)) {
+			return $this->installPlugin();
+		}
+
+		$this->installPackage($package);
+	}
+
+	private function installPackage(string $package)
+	{
+		$plugins = option("genxbe.kx-devutils.plugins.packages.{$package}");
+
+		$progress = progress(label: 'Installing plugins', steps: count($plugins));
+
+		foreach($plugins as $plugin) {
+			Shell::run("{$this->composerRunPrefix} composer require {$plugin}");
+			$progress->label('Installing '.$plugin);
+			$progress->advance();
+		}
+
+		$progress->finish();
+	}
+
+	private function installPlugin()
+	{
 		$pluginsUrl = 'https://getkirby.com/plugins.json';
         $plugins = Remote::get($pluginsUrl);
 		$plugins = Json::decode($plugins->content());
@@ -50,8 +83,8 @@ class InstallCommand extends Command
 		$success = progress(
 			label: "Installing {$plugin['name']} by {$plugin['author']}...",
 			steps: 1,
-			callback: function() use($plugin, $composerRunPrefix) {
-				return Shell::run("{$composerRunPrefix} composer require {$plugin['package']}");
+			callback: function() use($plugin) {
+				return Shell::run("{$this->composerRunPrefix} composer require {$plugin['package']}");
 			},
 		);
 

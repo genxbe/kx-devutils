@@ -8,6 +8,11 @@ $options = [
 		'createEnv' => false,
 		'composerPrefix' => '',
 	],
+	'plugins' => [
+		'packages' => [
+
+		]
+	]
 ];
 
 ray()->enable();
