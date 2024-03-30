@@ -24,12 +24,17 @@ class Command
 	{
 		$class = static::class;
 
-		return [
-			static::$commandName => [
-				'description' => static::$commandDescription,
-				'args' => static::$commandArgs,
-				'command' => fn($cli) => new $class($cli),
-			],
+		$return[static::$commandName] = [
+			'description' => static::$commandDescription,
+			'args' => static::$commandArgs,
+			'command' => fn($cli) => new $class($cli),
 		];
+
+		return $return;
+	}
+
+	public static function getName(): string
+	{
+		return static::$commandName;
 	}
 }

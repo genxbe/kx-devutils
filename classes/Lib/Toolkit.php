@@ -56,4 +56,22 @@ class Toolkit
 			}
 		}
 	}
+
+	public static function renderCommands(): void
+	{
+		$commands = [];
+		$availableCommands = option('genxbe.kx-devutils.availableCommands');
+		$disabledCommands = option('genxbe.kx-devutils.disabledCommands');
+
+		foreach ($availableCommands as $commandClass) {
+			if(!in_array($commandClass, $disabledCommands)) {
+				$newCommand = call_user_func([$commandClass, 'render']);
+				$commands = array_merge($commands, $newCommand);
+			}
+		}
+
+		kirby()->extend([
+			'commands' => $commands,
+		], kirby()->plugin('genxbe/kx-devutils'));
+	}
 }
