@@ -7,11 +7,9 @@ use Kirby\Toolkit\Str;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
-use function Laravel\Prompts\error;
-
 class Shell
 {
-	public static function run(string $cmd): bool
+	public static function run(string $cmd): array
     {
 		$workingDirectory = getcwd();
 		$command = Str::split($cmd, ' ');
@@ -22,8 +20,17 @@ class Shell
         try {
             $process->mustRun();
         } catch (ProcessFailedException $exception) {
-			ray($exception);
-			return false;
+			$error = match(true) {
+				Str::contains($exception->getMessage(), 'No such file or directory') => "❌ The command {$cmd} was not found.",
+				Str::contains($exception->getMessage(), 'requirements could not be resolved') => "❌ There was a problem with PHP version compatability.",
+				Str::contains($exception->getMessage(), 'Could not find a matching') => "❌ The github repo was not found.",
+				default => "❌ There was a problem running the command.",
+			};
+
+			return [
+				'success' => false,
+				'msg' => $error,
+			];
         }
 
 		return true;

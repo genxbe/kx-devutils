@@ -29,6 +29,7 @@ Kirby::plugin('genxbe/kx-devutils', [
 
 		/** Plugin Commands **/
 		Commands\PluginCommands\ListCommand::render(),
+		Commands\PluginCommands\InstallCommand::render(),
 		Commands\PluginCommands\RemoveCommand::render(),
 	),
 	'hooks' => [

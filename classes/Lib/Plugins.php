@@ -5,8 +5,6 @@ namespace X\Devutils\Lib;
 use Kirby\Toolkit\A;
 use Kirby\Toolkit\Str;
 
-use function Laravel\Prompts\suggest;
-
 class Plugins
 {
 	private $kirby;
@@ -30,10 +28,11 @@ class Plugins
 
 		$safePluginNames = A::merge($fullPluginNames, $pluginNames);
 
-		$selectedPlugin = suggest(
+		$selectedPlugin = \Laravel\Prompts\suggest(
 			label: 'Do you want options for a specific plugin? (Leavy empty for all)',
 			options: $safePluginNames,
-			placeholder: 'E.g. ray or bnomei/... (or just use the down arrow to select)',
+			placeholder: 'E.g. ray or bnomei/...',
+			hint: 'Start typing or use the down arrow to select from a list',
 		);
 
 		if(!empty($selectedPlugin)) {
