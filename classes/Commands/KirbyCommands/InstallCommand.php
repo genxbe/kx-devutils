@@ -115,7 +115,7 @@ class InstallCommand extends Command
 	private function checkEnv(): void
 	{
 		$env = $this->kirby->root().'/.env';
-		$envExample = $this->kirby->root('root').'/.env.example';
+		$envExample = $this->kirby->root().'/.env.example';
 
 		if(!F::exists($env) && F::exists($envExample)) {
 			error('❌ .env file not found.');
