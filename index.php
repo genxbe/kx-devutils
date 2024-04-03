@@ -11,15 +11,7 @@ $options = [
 	],
 	'plugins' => [
 		'packages' => [
-			// 'seo' => [
-			// 	'bnomei/kirby3-feed',
-			// 	'tobimori/kirby-seo',
-			// ],
-			// 'favourites' => [
-			// 	'genxbe/kirby3-ray',
-			// 	'bnomei/autoloader-for-kirby',
-			// 	'bnomei/kirby3-feed',
-			// ],
+			//
 		]
 	],
 	'availableCommands' => [

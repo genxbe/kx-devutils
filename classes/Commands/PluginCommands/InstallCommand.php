@@ -49,6 +49,11 @@ class InstallCommand extends Command
 	{
 		$plugins = option("genxbe.kx-devutils.plugins.packages.{$package}");
 
+		if(empty($plugins)) {
+			error("❌ The package was not found.");
+			return;
+		}
+
 		$progress = progress(label: 'Installing plugins', steps: count($plugins));
 
 		foreach($plugins as $plugin) {

@@ -8,7 +8,6 @@ use X\Devutils\Lib\Shell;
 use X\Devutils\Commands\Command;
 
 use function Laravel\Prompts\info;
-use function Laravel\Prompts\alert;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\warning;
 use function Laravel\Prompts\spin;
@@ -125,7 +124,7 @@ class InstallCommand extends Command
 		}
 
 		if(!F::exists($env) && !F::exists($envExample)) {
-			alert('❌ .env & .env.example file not found.');
+			error('❌ .env & .env.example file not found.');
 			info('🚀 Creating new basic .env file...');
 
 			$envContent = <<<'ENV'

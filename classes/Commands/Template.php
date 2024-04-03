@@ -1,6 +1,6 @@
 <?php
 
-namespace X\Devutils\Commands\KirbyCommands;
+namespace X\Devutils\Commands;
 
 use Kirby\CLI\CLI;
 use X\Devutils\Commands\Command;
